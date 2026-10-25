@@ -41,10 +41,10 @@ namespace RailwayCorporation
 
         private void BuildStyles()
         {
-            titleStyle = new GUIStyle(GUI.skin.label) { fontSize = 58, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, normal = { textColor = new Color(.92f, .97f, 1f) } };
-            headingStyle = new GUIStyle(GUI.skin.label) { fontSize = 26, fontStyle = FontStyle.Bold, normal = { textColor = Color.white } };
-            moneyStyle = new GUIStyle(GUI.skin.label) { fontSize = 32, fontStyle = FontStyle.Bold, normal = { textColor = new Color(.3f, .84f, .88f) } };
-            bodyStyle = new GUIStyle(GUI.skin.label) { fontSize = 15, wordWrap = true, normal = { textColor = new Color(.75f, .83f, .88f) } };
+            titleStyle = new GUIStyle { fontSize = 58, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, normal = { textColor = new Color(.92f, .97f, 1f) } };
+            headingStyle = new GUIStyle { fontSize = 26, fontStyle = FontStyle.Bold, normal = { textColor = Color.white } };
+            moneyStyle = new GUIStyle { fontSize = 32, fontStyle = FontStyle.Bold, normal = { textColor = new Color(.3f, .84f, .88f) } };
+            bodyStyle = new GUIStyle { fontSize = 15, wordWrap = true, normal = { textColor = new Color(.75f, .83f, .88f) } };
         }
 
         private void OnGUI()
