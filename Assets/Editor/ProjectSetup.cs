@@ -23,6 +23,7 @@ namespace RailwayCorporation.Editor
         public static void BuildWebGL()
         {
             CreateInitialScene();
+            PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
             var options = new BuildPlayerOptions
             {
                 scenes = new[] { "Assets/Main.unity" },
