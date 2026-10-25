@@ -19,5 +19,20 @@ namespace RailwayCorporation.Editor
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Main.unity", true) };
             AssetDatabase.SaveAssets();
         }
+
+        public static void BuildWebGL()
+        {
+            CreateInitialScene();
+            var options = new BuildPlayerOptions
+            {
+                scenes = new[] { "Assets/Main.unity" },
+                locationPathName = "Build/WebGL",
+                target = BuildTarget.WebGL,
+                options = BuildOptions.None
+            };
+            var report = BuildPipeline.BuildPlayer(options);
+            if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
+                throw new System.Exception("WebGL build failed: " + report.summary.result);
+        }
     }
 }
