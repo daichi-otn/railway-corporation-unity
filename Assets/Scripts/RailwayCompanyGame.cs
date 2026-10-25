@@ -26,8 +26,9 @@ namespace RailwayCorporation
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            BuildWorld();
             BuildStyles();
+            try { BuildWorld(); }
+            catch (System.Exception exception) { Debug.LogException(exception); }
         }
 
         private void Update()
@@ -123,7 +124,7 @@ namespace RailwayCorporation
 
         private static void CreateCube(string label, Vector3 position, Vector3 scale, Color color)
         {
-            var go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = label; go.transform.position = position; go.transform.localScale = scale; var renderer = go.GetComponent<Renderer>(); renderer.material = new Material(Resources.Load<Material>("WorldMaterial")); renderer.material.color = color;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = label; go.transform.position = position; go.transform.localScale = scale; var renderer = go.GetComponent<Renderer>(); var source = Resources.Load<Material>("WorldMaterial"); if (source != null) renderer.material = new Material(source); renderer.material.color = color;
         }
     }
 
