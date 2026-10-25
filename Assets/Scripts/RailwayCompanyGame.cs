@@ -123,7 +123,7 @@ namespace RailwayCorporation
 
         private static void CreateCube(string label, Vector3 position, Vector3 scale, Color color)
         {
-            var go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = label; go.transform.position = position; go.transform.localScale = scale; var renderer = go.GetComponent<Renderer>(); renderer.material.color = color;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = label; go.transform.position = position; go.transform.localScale = scale; var renderer = go.GetComponent<Renderer>(); renderer.material = new Material(Resources.Load<Material>("WorldMaterial")); renderer.material.color = color;
         }
     }
 

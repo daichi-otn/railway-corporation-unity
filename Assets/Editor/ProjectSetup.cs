@@ -15,9 +15,20 @@ namespace RailwayCorporation.Editor
             game.AddComponent<RailwayCompanyGame>();
             PlayerSettings.companyName = "Daichi Otonadayo";
             PlayerSettings.productName = "Railway Corporation";
+            EnsureWorldMaterial();
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), "Assets/Main.unity");
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Main.unity", true) };
             AssetDatabase.SaveAssets();
+        }
+
+        private static void EnsureWorldMaterial()
+        {
+            const string folder = "Assets/Resources";
+            const string path = folder + "/WorldMaterial.mat";
+            if (AssetDatabase.LoadAssetAtPath<Material>(path) != null) return;
+            if (!AssetDatabase.IsValidFolder(folder)) AssetDatabase.CreateFolder("Assets", "Resources");
+            var material = new Material(Shader.Find("Unlit/Color"));
+            AssetDatabase.CreateAsset(material, path);
         }
 
         public static void BuildWebGL()
