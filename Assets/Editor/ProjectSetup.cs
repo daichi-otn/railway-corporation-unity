@@ -13,6 +13,8 @@ namespace RailwayCorporation.Editor
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var game = new GameObject("Railway Corporation Game");
             game.AddComponent<RailwayCompanyGame>();
+            var physicsReference = new GameObject("Physics Type Reference");
+            physicsReference.AddComponent<BoxCollider>().enabled = false;
             PlayerSettings.companyName = "Daichi Otonadayo";
             PlayerSettings.productName = "Railway Corporation";
             EnsureWorldMaterial();

@@ -22,6 +22,7 @@ namespace RailwayCorporation
         private GUIStyle headingStyle;
         private GUIStyle moneyStyle;
         private GUIStyle bodyStyle;
+        private GUIStyle buttonStyle;
 
         private void Awake()
         {
@@ -45,6 +46,7 @@ namespace RailwayCorporation
             headingStyle = new GUIStyle { fontSize = 26, fontStyle = FontStyle.Bold, normal = { textColor = Color.white } };
             moneyStyle = new GUIStyle { fontSize = 32, fontStyle = FontStyle.Bold, normal = { textColor = new Color(.3f, .84f, .88f) } };
             bodyStyle = new GUIStyle { fontSize = 15, wordWrap = true, normal = { textColor = new Color(.75f, .83f, .88f) } };
+            buttonStyle = new GUIStyle { fontSize = 16, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, normal = { textColor = Color.white }, hover = { textColor = new Color(.3f, .84f, .88f) } };
         }
 
         private void OnGUI()
@@ -101,7 +103,7 @@ namespace RailwayCorporation
             if (Button(new Rect(w * .5f + 145, h - 88, 120, 38), running ? "走行中" : "発車")) running = true;
         }
 
-        private bool Button(Rect rect, string text) { return GUI.Button(rect, text); }
+        private bool Button(Rect rect, string text) { return GUI.Button(rect, text, buttonStyle); }
         private string PowerName() { return power < 0 ? "B" + -power : power == 0 ? "N" : "P" + power; }
         private long MonthlyProfit() { return 2800000 - staff * 360000 - vehicles * 680000 - 900000 - assets / 120 - debt * 42 / 12000; }
         private void AdvanceMonth() { var profit = MonthlyProfit(); cash += profit; assets = System.Math.Max(0L, assets - assets / 120); month++; notice = month + "月の決算を完了。" + (profit >= 0 ? "黒字 " : "赤字 ") + Yen(profit) + "です。"; }
