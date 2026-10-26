@@ -23,11 +23,13 @@ namespace RailwayCorporation
         private GUIStyle moneyStyle;
         private GUIStyle bodyStyle;
         private GUIStyle buttonStyle;
+        private Texture2D buttonTexture;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
             BuildStyles();
+            buttonTexture = Texture2D.whiteTexture;
             try { BuildWorld(); }
             catch (System.Exception exception) { Debug.LogException(exception); }
         }
@@ -105,9 +107,15 @@ namespace RailwayCorporation
 
         private bool Button(Rect rect, string text)
         {
-            var pressed = GUI.Button(rect, GUIContent.none);
+            var isHovering = rect.Contains(Event.current.mousePosition);
+            var oldColor = GUI.color;
+            GUI.color = isHovering ? new Color(.12f, .42f, .52f, .96f) : new Color(.04f, .12f, .18f, .96f);
+            GUI.DrawTexture(rect, buttonTexture);
+            GUI.color = new Color(.3f, .84f, .88f, .9f);
+            GUI.DrawTexture(new Rect(rect.x, rect.y, 4, rect.height), buttonTexture);
+            GUI.color = oldColor;
             GUI.Label(rect, text, buttonStyle);
-            return pressed;
+            return Event.current.type == EventType.MouseUp && isHovering;
         }
         private string PowerName() { return power < 0 ? "B" + -power : power == 0 ? "N" : "P" + power; }
         private long MonthlyProfit() { return 2800000 - staff * 360000 - vehicles * 680000 - 900000 - assets / 120 - debt * 42 / 12000; }
